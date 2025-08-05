@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsTirusTools Manual</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: 
+                url('https://i.postimg.cc/TwzBkbcR/FPsbkgimg.png') no-repeat center center fixed,
+                radial-gradient(circle at 20% 30%, rgba(100, 255, 200, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(150, 100, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(50, 150, 255, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(10, 20, 38, 0.6) 0%, rgba(26, 13, 51, 0.6) 30%, rgba(13, 40, 71, 0.6) 70%, rgba(5, 26, 46, 0.6) 100%);
+            background-size: cover, auto, auto, auto, cover;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .manual {
+            background: rgba(0, 15, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 200, 0.15);
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(100, 255, 200, 0.6), 
+                         0 0 40px rgba(150, 100, 255, 0.4),
+                         2px 2px 8px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(45deg, #64ffc8, #9b59b6, #3498db, #64ffc8);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #64ffc8;
+            border-bottom: 2px solid rgba(100, 255, 200, 0.3);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .code-block {
+            background: rgba(0, 20, 40, 0.6);
+            border: 1px solid rgba(100, 255, 200, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 15px 0;
+            color: #64ffc8;
+        }
+        
+        .highlight {
+            background: rgba(100, 255, 200, 0.1);
+            border-left: 4px solid #64ffc8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background: rgba(255, 100, 100, 0.1);
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .step {
+            background: rgba(100, 255, 200, 0.1);
+            border: 1px solid rgba(100, 255, 200, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .step-number {
+            background: #64ffc8;
+            color: #0a0a0a;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .tool-card {
+            background: rgba(0, 20, 40, 0.6);
+            border: 1px solid rgba(100, 255, 200, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            box-shadow: 0 10px 30px rgba(100, 255, 200, 0.2);
+            transform: translateY(-2px);
+            border-color: rgba(100, 255, 200, 0.4);
+        }
+        
+        .tool-title {
+            color: #64ffc8;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .keyboard-shortcut {
+            background: #2d3748;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 0 2px;
+        }
+        
+        ul, ol {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .nav-menu {
+            background: rgba(0, 20, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 200, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .nav-menu a {
+            color: #64ffc8;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: #9b59b6;
+            text-shadow: 0 0 10px rgba(100, 255, 200, 0.5);
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .manual {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .nav-menu a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="manual">
+            <h1>🎹 OsTirusTools Manual</h1>
+            <p class="subtitle">Your guide to morphing and mutating OsTirus synthesizer patches</p>
+            
+            <div class="nav-menu">
+                <a href="#getting-started">Getting Started</a>
+                <a href="#patch-morpher">Patch Morpher</a>
+                <a href="#patch-mutator">Patch Mutator</a>
+                <a href="#tips">Tips & Tricks</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+            </div>
+            
+            <div class="section" id="getting-started">
+                <h2><span class="emoji">🚀</span>Getting Started</h2>
+                
+                <h3>What is OsTirusTools?</h3>
+                <p>OsTirusTools is a desktop application that provides two powerful tools for manipulating OsTirus synthesizer patches:</p>
+                
+                <div class="tool-card">
+                    <div class="tool-title">🔀 Patch Morpher</div>
+                    <p>Creates smooth transitions between two patches using mathematical interpolation algorithms. Perfect for creating evolving soundscapes and smooth parameter changes.</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-title">🧬 Patch Mutator</div>
+                    <p>Generates 8 variations of a single patch using intelligent mutation algorithms. Great for discovering new sounds and creating patch families.</p>
+                </div>
+                
+                <h3>Installation</h3>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    Download and install OsTirusTools from the releases page
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    Launch the application - you'll see the main menu with tool options
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    Use the menu or keyboard shortcuts to navigate between tools
+                </div>
+                
+                <h3>Keyboard Shortcuts</h3>
+                <ul>
+                    <li><span class="keyboard-shortcut">Cmd/Ctrl+H</span> - Home page</li>
+                    <li><span class="keyboard-shortcut">Cmd/Ctrl+M</span> - Patch Morpher</li>
+                    <li><span class="keyboard-shortcut">Cmd/Ctrl+T</span> - Patch Mutator</li>
+                    <li><span class="keyboard-shortcut">Cmd/Ctrl+Q</span> - Quit application</li>
+                </ul>
+            </div>
+            
+            <div class="section" id="patch-morpher">
+                <h2><span class="emoji">🔀</span>Patch Morpher</h2>
+                
+                <h3>What it does</h3>
+                <p>The Patch Morpher creates 8 intermediate patches between two source patches, allowing you to create smooth transitions and explore the parameter space between different sounds.</p>
+                
+                <h3>How to use it</h3>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Prepare your patches:</strong> Export two OsTirus patches as JSON files from your synthesizer
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Load Patch A:</strong> Copy your starting patch JSON to clipboard and paste it into the "Patch A" textarea, or click "📋 Paste A" button
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Load Patch B:</strong> Copy your ending patch JSON to clipboard and paste it into the "Patch B" textarea, or click "📋 Paste B" button
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Choose interpolation mode:</strong> Select from 8 different mathematical curves:
+                    <ul>
+                        <li><strong>Linear:</strong> Even spacing - constant rate of change</li>
+                        <li><strong>Ease In:</strong> Slow start, fast finish</li>
+                        <li><strong>Ease Out:</strong> Fast start, slow finish</li>
+                        <li><strong>Ease In-Out:</strong> Smooth S-curve</li>
+                        <li><strong>Sine:</strong> Gentle wave-like progression</li>
+                        <li><strong>Bounce:</strong> Elastic bouncing effects</li>
+                        <li><strong>Exponential:</strong> Explosive finish</li>
+                        <li><strong>Chaotic:</strong> Unpredictable organic evolution</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>Configure chaos (if using chaotic mode):</strong> Adjust the chaos rate from 3.57 to 4.0 for different levels of unpredictability
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <strong>Generate morphs:</strong> Click "🔀 Generate Morphs" to create 8 intermediate patches
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <strong>Export results:</strong> Click "📋 Copy" on any morph you like to copy it as a complete OsTirus JSON patch
+                </div>
+                
+                <div class="highlight">
+                    <strong>💡 Pro Tip:</strong> Try different interpolation modes with the same two patches to discover different evolutionary paths between sounds!
+                </div>
+            </div>
+            
+            <div class="section" id="patch-mutator">
+                <h2><span class="emoji">🧬</span>Patch Mutator</h2>
+                
+                <h3>What it does</h3>
+                <p>The Patch Mutator generates 8 variations of a single patch by intelligently modifying parameters with configurable intensity and scope.</p>
+                
+                <h3>How to use it</h3>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Load your patch:</strong> Copy an OsTirus patch JSON to clipboard and paste it into the textarea, or click "📋 Paste Patch" button
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Set mutation intensity (1-10):</strong>
+                    <ul>
+                        <li><strong>1-3:</strong> Subtle variations, minor tweaks</li>
+                        <li><strong>4-6:</strong> Moderate changes, noticeable differences</li>
+                        <li><strong>7-10:</strong> Dramatic mutations, major transformations</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Choose parameters to mutate (5-80):</strong>
+                    <ul>
+                        <li><strong>5-20:</strong> Conservative mutations, few changes</li>
+                        <li><strong>21-40:</strong> Balanced approach, moderate complexity</li>
+                        <li><strong>41-80:</strong> Extensive mutations, complex evolution</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Generate mutations:</strong> Click "🧬 Generate Mutations" to create 8 variations
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>Review changes:</strong> Each mutation shows which parameters changed and by how much
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <strong>Export results:</strong> Click "📋 Copy" on any mutation you like to copy it as a complete OsTirus JSON patch
+                </div>
+                
+                <div class="highlight">
+                    <strong>💡 Pro Tip:</strong> The mutation algorithm favors musically important parameters (oscillators, filters, envelopes) over effects parameters for more musical results!
+                </div>
+            </div>
+            
+            <div class="section" id="tips">
+                <h2><span class="emoji">💡</span>Tips & Tricks</h2>
+                
+                <h3>OsTirus Patch Format</h3>
+                <p>OsTirus patches are JSON objects that look like this:</p>
+                <div class="code-block">
+{
+  "plugin": "OsTIrus",
+  "pluginVersion": "1.4.2",
+  "pluginVersionNumber": "10402",
+  "formatVersion": 1,
+  "sysex": "f0 00 20 33 01 00 10 01 00..."
+}
+                </div>
+                
+                <h3>Morphing Tips</h3>
+                <ul>
+                    <li><strong>Choose contrasting patches</strong> for more dramatic morphs</li>
+                    <li><strong>Linear mode</strong> works best for predictable, technical transitions</li>
+                    <li><strong>Ease-in</strong> is great for builds and crescendos</li>
+                    <li><strong>Ease-out</strong> works well for impacts and attacks</li>
+                    <li><strong>Chaotic mode</strong> with r=3.8 provides good balance of chaos and musicality</li>
+                </ul>
+                
+                <h3>Mutation Tips</h3>
+                <ul>
+                    <li><strong>Start with low intensity (1-3)</strong> for subtle variations</li>
+                    <li><strong>Use high parameter counts (40-80)</strong> for complex evolution</li>
+                    <li><strong>Parse your original patch first</strong> to understand the baseline</li>
+                    <li><strong>Try multiple mutations</strong> of the same patch for variety</li>
+                </ul>
+                
+                <h3>Workflow Suggestions</h3>
+                <ol>
+                    <li>Export patches from OsTirus as JSON files</li>
+                    <li>Keep a library of interesting base patches for morphing/mutation</li>
+                    <li>Use mutations to create patch families with related sounds</li>
+                    <li>Use morphing to create smooth automation sequences</li>
+                    <li>Combine both tools: mutate patches, then morph between mutations</li>
+                </ol>
+            </div>
+            
+            <div class="section" id="troubleshooting">
+                <h2><span class="emoji">🔧</span>Troubleshooting</h2>
+                
+                <h3>Common Issues</h3>
+                
+                <div class="warning">
+                    <strong>⚠️ "Invalid JSON" Error</strong><br>
+                    Make sure your patch is properly formatted OsTirus JSON. Check for missing quotes, brackets, or commas.
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ "SysEx too short" Error</strong><br>
+                    The patch must contain complete 256-parameter SysEx data. Ensure you're copying the full patch export from OsTirus.
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ Empty Results</strong><br>
+                    Check that your patches parsed successfully before generating morphs or mutations. Look for the success message.
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ "Parameters not changing"</strong><br>
+                    For mutations: Increase mutation intensity or parameter count. For morphs: Ensure your two patches are actually different.
+                </div>
+                
+                <h3>Browser Compatibility</h3>
+                <p>The clipboard functionality requires:</p>
+                <ul>
+                    <li>Modern browser with ES6+ support</li>
+                    <li>HTTPS or localhost for security</li>
+                    <li>Tested on Chrome, Firefox, Safari, Edge</li>
+                </ul>
+                
+                <h3>Getting Help</h3>
+                <p>If you encounter issues:</p>
+                <ul>
+                    <li>Check that your OsTirus patches are valid JSON format</li>
+                    <li>Try with a fresh patch export from OsTirus</li>
+                    <li>Restart the application if it becomes unresponsive</li>
+                    <li>Report bugs on the project's GitHub page</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🎵</span>Happy Patch Morphing!</h2>
+                <p>OsTirusTools opens up new creative possibilities for sound design and musical exploration. Experiment with different algorithms, intensities, and parameter combinations to discover unique sounds and evolving textures.</p>
+                
+                <div class="highlight">
+                    <strong>Remember:</strong> There are no rules in creative sound design. Use these tools as starting points for your own musical journey and don't be afraid to experiment!
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
