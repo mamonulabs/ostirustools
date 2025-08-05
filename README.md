@@ -18,6 +18,3 @@ Patch morphing and mutation tools for OsTirus synthesizer.
 3. Generate morphs or mutations
 4. Import results back to OsTirus
 
-## Download
-
-Check [releases](https://github.com/mamonulabs/ostirustools/releases) for the latest version.
